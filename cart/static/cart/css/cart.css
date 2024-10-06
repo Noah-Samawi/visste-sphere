@@ -1,0 +1,44 @@
+/* CART CARDS */
+.cart-title {
+  font-size: 1.5rem;
+}
+
+.cart-button {
+  font-size: 0.8rem;
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.cart-button:hover,
+.cart-button:focus {
+  background-color: whitesmoke;
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+td p {
+  margin-bottom: 0.15rem;
+}
+
+@media screen and (max-width: 576px) {
+  .membership-tag {
+    display: none;
+  }
+
+  .cart-title {
+    font-size: 0.8rem;
+  }
+
+  tbody {
+    font-size: 0.8rem;
+  }
+
+  .form-control {
+    padding: 0.2rem;
+  }
+
+  thead {
+    font-size: 0.8rem;
+  }
+}

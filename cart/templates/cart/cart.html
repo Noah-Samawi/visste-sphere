@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}Cart{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+{% endblock %}
+
+
+
+{% block page_header %}
+<header class="bg-dark">
+    <div class="container px-4 px-lg-5 my-4 my-lg-5">
+      <div class="text-center text-white">
+        <h1 class="display-4 fw-bolder">Shopping Cart</h1>
+        
+        <p class="lead fw-normal text-white-50 mb-0">
+          <i class="text-info font-weight-bold">{{cart_items|length}}</i> types of item in your cart
+        </p>
+
+        {% if  request.user.profile.active_subscription %}
+        <p class="lead fw-normal text-white-50 mb-0">Your membership is <span class="fw-bold text-{{request.user.profile.active_subscription.color}} font-weight-bold text-capitalize">{{request.user.profile.active_subscription}}</span></p>
+        {% endif %}
+
+      </div>
+    </div>
+  </header> 
+
+{% endblock %}
+
+
+{% block content %}
+    <!-- Cart Section-->
+    <section class="pt-5 pb-5">
+        <div class="container p-0">
+          <div class="row mx-0">
+              {% if cart_items %}
+              <table
+              id="shoppingCart"
+              class="table"
+            >
+              <thead>
+                <tr>
+                  <th style="width: 60%">Product</th>
+                  <th style="width: 12%">Price</th>
+                  <th style="width: 10%">Quantity</th>
+                  <th style="width: 10%">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in cart_items %}
+                <!--Cart Item Cards -->
+                {% include "includes/cart_item.html" with item=item  %}
+                {% endfor %}
+              </tbody>
+            </table>
+              {% endif %}
+
+        
+              <div class="float-right text-right">
+                <h2>Total:</h2>
+                <h3>${{ total|floatformat:2 }}</h3>
+              </div>
+          </div>
+          
+            {% if cart_items|length > 0 %}
+
+            <hr>
+            <div class='p-2'>
+            <div class="text-right px-0">
+              <a href="{% url "checkout" %}" class="btn btn-primary mb-4 btn-lg"
+                >Checkout</a
+              >
+            </div>
+            {% endif %}
+  
+            <div class="col-sm-6 mb-3 text-md-left">
+              <a href="{% url "products" %}">
+                <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a
+              >
+            </div>
+          </div>
+          </div>
+      </section>
+{% endblock %}

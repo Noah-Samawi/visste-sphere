@@ -1,0 +1,105 @@
+{% load cart_tools %}
+{% load is_instance %}
+{% load static %}
+
+
+<tr>
+    <td data-th="Item">
+      <div class="row">
+        <div class="col-md-3 text-left">
+
+          {% if item.product.image and item.product.image.url %}
+          <img
+          src="{{item.product.image.url}}"
+          alt="Product {{item.product.name}}"
+          class="img-fluid d-none d-md-block rounded mb-2 border border-black-50"
+          style="height: 100px;  width: 100px; object-fit: cover;"
+          >
+          {% else %}
+          <img class="card-img-top" src="{% static 'images/default-product-image.webp' %}" alt="product placeholder default"
+          style="height: 100px;  width: 100px; object-fit: cover;"
+          >
+          {% endif %}       
+        </div>
+        <div class="col-md-9 text-left mt-sm-2">
+          {% if item.product|is_subscription %}
+              <h2 class='cart-title h4'>{{item.product.get_name_display}}</h2>
+          {% else %}
+          <h2 class='cart-title h4'>{{item.product.name}}</h2>
+          {% endif %}
+          <p class="font-weight-light text-secondary d-none d-sm-block">
+            {{item.product.description}}
+          </p>
+        </div>
+      </div>
+    </td>
+    <td data-th="Price">
+      {% if item.product.sale or item.product.discount %}
+      <p class='text-decoration-line-through text-danger'>${{item.product.price}}</p>
+      <p>${{item.product.total_final_price}}</p>
+      {% else %}
+      <p>${{item.product.price}}</p>
+      {% endif %}
+      {% if item.product.sale %}<span class='badge bg-success'>%{{item.product.sale}} Sale</span> {% endif %}
+
+      <!--User Member Discounts-->
+      {% if request.user.is_authenticated %}
+      {% if request.user.profile.subscription and item.product.discount != None %}
+       <p class='badge bg-{{request.user.profile.subscription.color}} text-wrap'>
+        <span class='membership-tag'>{{request.user.profile.subscription.get_name_display}}</span>
+        <span>-${{item.product.discount|floatformat:2}}</span>
+        </p> 
+      {% endif %}
+      {% endif %}
+  
+    </td>
+      <!--Update Product Form if Product -->
+    <td data-th="Quantity">
+      {% if item.product|is_product %}
+      <form
+      class="form text-center"
+      action="{% url 'update_cart' item.product.id %}"
+      method="POST"
+    >
+      {% csrf_token %}
+      <input
+        type="number"
+        name='quantity'
+        class="form-control text-center"
+        value="{{item.quantity}}"
+        min="0"
+        max="99"
+      >
+      <button type='submit' class="cart-button text-primary border px-2 my-1">
+        Update
+      </button>
+      <input type="hidden" name="redirect_url" value="{{ request.path }}" >
+    </form>
+          <!--Remove Product Form -->
+      {% endif %}
+        <form
+        class="form text-center"
+        action="{% url 'remove_from_cart' item.product.id %}"
+        method="POST"
+        >
+          {% csrf_token %}
+          {% if not item.product|is_product %}
+          <strong class="form-control bg-secondary text-center text-white fw-bold"
+          >{{item.quantity}}</strong> 
+          {% endif %}
+          <button
+            type="submit"
+            class="cart-button text-danger border px-2"
+          >
+          Remove
+          </button>
+          <input type="hidden" name="redirect_url" value="{{ request.path }}" >
+        </form>
+    </td>
+    <td data-th="Subtotal">
+      ${{ item.product.total_final_price | calc_subtotal:item.quantity }}
+    </td>
+  </tr>
+  
+  
+  
