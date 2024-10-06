@@ -59,8 +59,9 @@ INSTALLED_APPS = [
     'profiles',
     'crispy_forms',
     'crispy_bootstrap4',
-    'embed_video'
+    'embed_video',
 ]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',

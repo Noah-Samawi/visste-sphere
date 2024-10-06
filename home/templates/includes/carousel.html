@@ -1,0 +1,155 @@
+{% load static %}
+
+<div
+  id="carouselExampleIndicators"
+  class="carousel slide bg-dark rounded-3"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div
+      class="carousel-item text-center item-center active py-2 text-light pb-5"
+    >
+      <div class="img-box">
+        <img
+          src="{% static 'images/person1.webp' %}"
+          alt="testimonial person 1"
+          loading="lazy"
+        >
+      </div>
+      <h3 class="h4 mt-1">Cozy Knit Jumper</h3>
+      <div class="star-rating">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star-o text-warning"></i>
+          </li>
+        </ul>
+      </div>
+      <p class="testimonial text-center mx-auto">
+        Warmth meets tech in this cozy knit jumper. Perfect for coding or casual wear, it's both stylish and comfortable.
+      </p>
+      <strong class="overview text-center mx-auto">Gold Berry</strong>
+    </div>
+
+    <div class="carousel-item text-center item-center py-2 text-light pb-5">
+      <div class="img-box">
+        <img
+          src="{% static 'images/person2.webp' %}"
+          alt="testimonial person 2"
+          loading="lazy"
+
+        >
+      </div>
+      <h3 class="h4 mt-1">Mastering Flexbox and Grid Layouts</h3>
+      <div class="star-rating">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star-o text-warning"></i>
+          </li>
+        </ul>
+      </div>
+      <p class="testimonial text-center mx-auto">
+        The stress relief ball is a lifesaver! Instantly soothing, it's a must-have for relieving tension and stress.
+      </p>
+      <strong class="overview text-center mx-auto">Darrach Barneveld</strong>
+    </div>
+
+    <div class="carousel-item text-center item-center py-2 text-light pb-5">
+      <div class="img-box">
+        <img
+          src="{% static 'images/person3.webp' %}"
+          alt="testimonial person 3"
+          loading="lazy"
+
+        >
+      </div>
+      <h3 class="h4 mt-1">Stress Relief Ball</h3>
+      <div class="star-rating">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star text-warning"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-star-o text-warning"></i>
+          </li>
+        </ul>
+      </div>
+      <p class="testimonial text-center mx-auto">
+        Mastering Flexbox and Grid Layouts course is a game-changer! Clear, concise, and practical lessons make learning a breeze
+      </p>
+      <strong class="overview text-center mx-auto">Tom Bombadil</strong>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
