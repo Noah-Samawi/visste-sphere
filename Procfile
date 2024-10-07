@@ -1,0 +1,1 @@
+web: gunicorn visstesphere.wsgi:application

@@ -1,0 +1,29 @@
+Hi, {{ order.full_name }},
+
+Thank you for choosing VissteSphere  Store! This email is to confirm that we have received your order {{ order.order_number }} placed on {{ order.date}} for the following item(s):
+
+{% for item in order.lineitems.all %}
+Title: {{item.content_object.name }},
+Quantity: {{ item.quantity }},
+Price:  ${{ item.item_total }}
+{% endfor %}
+{% if order.discount %}
+Discount: $ {{ order.discount }}
+{% endif %}
+Order Total: $ {{ order.order_total }}
+Delivery/Admin: $ {{ order.delivery_cost }}
+Grand Total: $ {{ order.grand_total }}
+
+Delivery Address: 
+{{ order.street_address1 }},
+{{ order.town_or_city }}, 
+{{ order.country }}
+
+We are currently processing your order and will keep you updated on its status.
+
+If you have any questions or need further assistance, please feel free to contact our customer service team at {{ contact_email }}.
+
+Thank you again for shopping with us. We truly appreciate your business.
+
+Best regards,
+Visste Sphere Store
