@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}Add Product{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<header class="bg-dark">
+  <div class="container px-4 px-lg-5 my-4 my-lg-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Update Inventory</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Add, update or delete products from Visste Sphere 
+      </p>
+    </div>
+  </div>
+</header>  
+
+{% endblock %}
+
+{% block content %}
+    <!-- Product-->
+    <section class="py-3 bg-orange-gradient">
+      <div
+          class="my-4 text-center text-orange w-fit mx-auto px-5 border-bottom border-dark"
+        >
+          <h2 class="text-dark">Add Product</h2>
+          <i class="fa-brands fa-product-hunt h1"></i>
+        </div>
+      
+      <form
+      method="post"
+      enctype="multipart/form-data"
+      class="form-container p-4 rounded-3 mx-auto mb-5 bg-white"
+    >
+      {{ form | crispy }}
+      <!--  -->
+      {% csrf_token %}
+  
+
+      <div class='d-flex flex-column gap-2'>
+      <button type="submit" class="btn btn-primary my-4 w-fit" >Add Product</button>
+      
+      <a href="{% url "products" %}">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Products</a
+      >
+      </div>
+    </form>
+  </section>
+{% endblock %}

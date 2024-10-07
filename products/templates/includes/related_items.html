@@ -1,0 +1,95 @@
+{% load static %}
+  
+  <!-- Related items section-->
+  <section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+      <h2 class="fw-bolder mb-4 text-center">Related products</h2>
+      <div
+        class="row gx-1 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+      >
+      {% for related in related_items  %}
+      <div class="col mb-4">
+        <article class="card h-100">
+          <!-- Sale badge-->
+          {% if related.sale %}
+          <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+            {{related.sale}}% Sale
+          </div>
+          {% endif %}
+          <!-- Item image-->
+
+          {% if related.image and related.image.url %}
+          <img class="card-img-top" src="{{ related.image.url }}" alt="{{ related.name }}">
+          {% else %}
+
+          <img class="card-img-top" src="{% static 'images/default-product-image.webp' %}" alt="product placeholder default">
+          {% endif %}
+          <!-- Item details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Item name-->
+              <h3 class="h5 fw-bolder">{{related.name}}</h3>
+              <!-- Item reviews-->
+              <div class="d-flex justify-content-center small text-warning mb-2">
+                {% for i in related.rating_array %}
+                <i class="fa-solid fa-star text-warning"></i>
+                {% endfor %}
+              </div>
+              <!-- Item price-->
+              {% if related.sale %}
+              <span class="text-decoration-line-through text-danger">${{related.price}}</span>
+              <span><strong>${{related.total_final_price}}</strong></span>
+              {% else %}
+              <span><strong>${{related.price}}</strong></span>
+              {% endif %}
+            </div>
+          </div>
+          <!-- Item actions-->
+          <div class="text-center">
+            {% if item == 'prog' %}
+                <a class="btn btn-outline-dark mt-auto" href="{% url "program_detail" related.id %}">View Program</a>
+            {% else %}
+                <a class="btn btn-outline-dark mt-auto" href="{% url "product_detail" related.id %}">View Product</a>
+            {% endif %}
+        </div>
+        </article>
+      </div>
+      {% endfor %}
+      </div>
+      <nav aria-label="container">
+        <ul class="pagination justify-content-center">
+            {% if related_products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ related_products.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+    
+            {% for page in related_products.paginator.page_range %}
+                <li class="page-item{% if page == related_products.number %} active{% endif %}">
+                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+    
+            {% if related_products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ related_products.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ related_products.paginator.num_pages }}" aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+  </section>

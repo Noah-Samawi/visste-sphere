@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}Edit Product{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<header class="bg-dark">
+  <div class="container px-4 px-lg-5 my-4 my-lg-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Update Inventory</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Add, update or delete products from Visste Sphere 
+      </p>
+    </div>
+  </div>
+</header>  
+
+{% endblock %}
+
+{% block content %}
+    <!-- Product-->
+    <section class="py-3 bg-orange-gradient">
+      <div
+          class="my-4 text-center text-orange w-fit mx-auto px-5 border-bottom border-dark"
+        >
+          <h2 class="text-dark">Edit Product</h2>
+          <i class="fa-brands fa-product-hunt h1"></i>
+        </div>
+      
+      <form
+      method="post"
+      enctype="multipart/form-data"
+      class="form-container p-4 rounded-3 mx-auto mb-5 bg-white"
+    >
+      {{ form | crispy }}
+      <!--  -->
+      {% csrf_token %}
+  
+      <button type="submit" class="btn btn-primary my-4">Update Product</button>
+
+        <button
+        type="button"
+        class="btn btn-danger"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteProduct-{{product.id}}"
+        >
+        <i class="fa-solid fa-trash"></i>Delete Product
+        </button>
+
+        <div>
+        <a href="{% url "products" %}">
+          <i class="fas fa-arrow-left mr-2"></i> Back to Products</a
+        >
+        </div>
+    </form>
+    <div
+    class="modal fade"
+    id="deleteProduct-{{product.id}}"
+    tabindex="-1"
+    aria-labelledby="deleteProduct"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteProduct">Are you sure!?</h5>
+            <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            ></button>
+        </div>
+        <div class="modal-body">This action cannot be undone!</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+            </button>
+            <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit" name="delete_product">
+                <i class="fa-solid fa-trash"></i>Confirm Delete
+            </button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+  </section>
+
+{% endblock %}

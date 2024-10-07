@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="col px-1 mb-3">
+    <article class="card h-100 border-grey shadow">
+      <!-- Sale badge-->
+      {% if product.sale %}
+      <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+        {{product.sale}}% Sale
+      </div>
+      {% endif %}
+      <!-- Product image-->
+
+      {% if product.image and product.image.url %}
+      <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+
+      <img class="card-img-top" src="{% static 'images/default-product-image.webp' %}" alt="product placeholder default">
+      {% endif %}
+
+      <!-- Product details-->
+      <div class="card-body p-2">
+        <div class="text-center">
+          <!-- Product name-->
+          <h2 class="fw-bolder h5">{{product.name}}</h2>
+          <!-- Product reviews-->
+          <div
+            class="d-flex justify-content-center small text-warning mb-2"
+          >
+
+          {% for i in product.rating_array %}
+          <i class="fa-solid fa-star text-warning"></i>
+          {% endfor %}
+
+          </div>
+          <!-- Product price-->
+
+          <p>
+          {% if product.sale %}
+          <span class="text-decoration-line-through text-danger">${{product.price}}</span>
+          <strong>${{product.total_final_price}}</strong>
+          {% else %}
+          <strong>${{product.price}}</strong>
+          {% endif %}
+          </p>
+      
+          <p class="excerpt">
+            {{product.description}}
+          </p>
+        </div>
+      </div>
+      <!-- Product actions-->
+      <div class="p-1 pb-2 p-lg-4 pt-0 text-center">
+          <a class="btn btn-outline-dark mt-auto mb-1" href="{% url "product_detail" product.id %}"
+          >View Product</a
+        >
+       <!-- Edit Product if allowed -->
+       {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser or request.user.profile.moderator %}
+        <a class="btn btn-primary mb-1" href="{% url "edit_product" product.pk %}"
+        >Edit <i class="fa-solid fa-gear ms-1"></i></a
+      >
+        {% endif %}
+    {% endif %}
+      </div>
+    </article>
+</div>

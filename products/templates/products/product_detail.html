@@ -1,0 +1,105 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+
+{% block extra_title %}{{product.name}}{% endblock %}
+
+{% block page_header %}
+<header class="bg-dark">
+  <div class="container px-4 px-lg-5 my-4 my-lg-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Shop in style</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Fancy this product? Add it to your cart!
+      </p>
+    </div>
+  </div>
+</header>
+
+{% endblock %} 
+
+
+{% block content %}
+
+  <section class="py-5 bg-white">
+    <div class="container px-4 px-lg-5 my-5">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6 position-relative">
+          {% if product.image and product.image.url %}
+          <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+          <img class="card-img-top" src="{% static 'images/default-product-image.webp' %}" alt="product placeholder default">
+          {% endif %}
+      
+          {% if product.sale %}
+          <div class="position-absolute " style="top: 0.5rem; right: 0.5rem">
+            <p class='h5'><span class="badge bg-success">{{product.sale}}% Sale
+            </span><p>
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-6">
+          <div class="small mb-1">SKU: {{product.sku}}</div>
+          <h2 class="display-5 fw-bolder">{{product.name}}</h2>
+          <div class="fs-5 mb-5">
+            {% if product.sale %}
+            <span class="text-decoration-line-through text-danger">${{product.price}}</span>
+            <span>${{product.total_final_price}}</span>
+            {% else %}
+            <span>${{product.price}}</span>
+            {% endif %}
+          </div>
+          <p class="lead">{{product.description}}</p>
+
+          <!-- Add to cart form -->
+            <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                {% csrf_token %}
+                <div class="d-flex">
+                <label for="inputQuantity" class="visually-hidden">Quantity</label>
+                <input
+                    name="quantity"
+                    class="form-control text-center me-3"
+                    id="inputQuantity"
+                    type="number"
+                    value="1"
+                    min="1"
+                    max="99"
+                    style="max-width: 9rem"
+                >
+                <button
+                    id="submitBtn"
+                    class="btn btn-outline-dark flex-shrink-0"
+                    type="submit"
+                >
+                    <i class="bi-cart-fill me-1"></i>
+                    Add to cart
+                </button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </div>
+            </form>
+
+              <!-- Edit Product if allowed -->
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser or request.user.profile.moderator %}
+            <a class="btn btn-primary mt-3" href="{% url "edit_product" product.pk %}"
+            >Edit Product<i class="fa-solid fa-gear ms-1"></i></a
+          >
+            {% endif %}
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <a href="{% url "products" %}">
+          <i class="fas fa-arrow-left mr-2"></i> Back to products</a
+        >
+      </div>
+    </div>
+  </section>
+
+
+     <!-- Related items section-->
+
+     {% include "includes/related_items.html" with related_items=related_products item="prod" %}
+  
+{% endblock %}
