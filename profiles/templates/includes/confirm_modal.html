@@ -1,0 +1,40 @@
+<!-- Modal for deleting subscriptions  -->
+<div
+  class="modal fade"
+  id="subscriptionModal"
+  tabindex="-1"
+  aria-labelledby="subscriptionModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="subscriptionModalLabel">
+          Remove Your Membership
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        This action cannot be undone! You will lose your privileges
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+
+        <form method="POST" action="{% url 'remove_subscription' %}">
+          {% csrf_token %}
+          <input type="hidden" name="redirect_url" value="{{ request.path }}" >
+          <button class="btn btn-danger" type="submit" name="delete_item">
+            <i class="fa-solid fa-trash"></i> Cancel Membership
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

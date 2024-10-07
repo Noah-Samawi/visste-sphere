@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}My Courses{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+
+{% load static %}
+{% block page_header %}
+<header class="bg-dark">
+  <div class="container px-4 px-lg-5 my-4 my-lg-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Your Courses</h1>
+    </div>
+  </div>
+</header>
+
+{% endblock %}
+
+
+
+<!--  -->
+
+{% block content %}
+<section class="container py-5">
+  <h2 class='text-dark text-center'>Active Courses</h2> 
+  <hr>
+    <div class="container px-4 px-lg-5 mt-5">
+
+      {% if programs|length == 0 %}
+    
+      <div class='text-center'>
+        <h2 class='text-dark my-5'>No Courses</h2>
+        <p class='text-secondary my-5'>Looks like you haven't enrolled in any courses yet. Click the button below to explore our courses.</p>
+        <a href="{% url 'programs' %}" class="btn btn-primary">Explore Courses</a>
+      <div>
+
+      {% else %}
+
+        <div class="row gx-2 gy-2 row-cols-lg-2 justify-content-center">
+
+        {% for program in programs  %}
+
+        {% include "includes/my_courses_card.html" with program=program %}
+
+        {% endfor %}
+      </div>
+
+        {% endif %}
+  
+   
+      </div>
+</section>
+  {% endblock %}

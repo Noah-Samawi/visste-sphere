@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}Subscriptions{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<header class="bg-dark">
+  <div class="container px-4 px-lg-5 my-4 my-lg-5">
+    <article class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Subscriptions</h1>
+      {% if request.user.profile.active_subscription %}
+      <p class="lead fw-normal text-white-50 mb-0">Your membership is <span class="fw-bold text-{{request.user.profile.active_subscription.color}} font-weight-bold text-capitalize">{{request.user.profile.active_subscription}}</span></p>
+      {% else %}
+      
+      <p class="lead fw-normal text-white-50 mb-0">
+        Become a member of <span class="text-info font-weight-bold">Visste Sphere</span> and enjoy the benefits!
+    </p>
+    {% endif %}
+    </article>
+  </div>
+</header>
+
+{% endblock %}
+
+{% block content %}
+<div class="container p-4">
+    <div class="row">
+
+        {% for subscription in subscriptions  %}
+
+        <div class="col-sm-4 mb-3">
+            <div class="subscription card text-center">
+                <div class="header {% if subscription.current %} text-white bg-secondary {% else %} bg-{{subscription.color}} {% endif %}">
+                    <h2 class='fw-bolder'>${{subscription.price}} <small>| mo</small></h2>
+                    <div class="title fw-bolder">{{subscription.get_name_display}}</div>
+
+                    {% if subscription.current %}
+                    <span class='position-absolute top-0 right-0 translate-middle badge rounded-pill bg-danger'>Current Membership</span>
+                    {% endif %}
+                </div>
+        
+                <ul class="list-group list-group-flush text-start">
+                    <li class="list-group-item">
+                        <p><i class="fa-solid fa-tags me-2 {% if subscription.current %}bg-secondary text-white {% else %} bg-{{subscription.color}} {% endif %}  "></i> Store Discount: <span class="fw-bold">{{subscription.product_discount}}%</span></p>
+
+                    </li>
+                    <li class="list-group-item">
+                        <p><i class="fa-solid fa-school me-2 {% if subscription.current %}bg-secondary text-white {% else %} bg-{{subscription.color}} {% endif %} "></i> Course Discount: <span class="fw-bold">{{subscription.program_discount}}%</span></p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><i class="fa-solid fa-truck me-2 {% if subscription.current %}bg-secondary text-white{% else %} bg-{{subscription.color}} {% endif %} "></i>Delivery/Admin: <span class="fw-bold">Free</span> </p>
+                    </li>
+                    {% if subscription.tutor_support %}
+                    <li class="list-group-item">
+                        <p><i class="fa-solid fa-headphones-simple me-2 {% if subscription.current %}bg-secondary text-white {% else %} bg-{{subscription.color}} {% endif %} "></i> 
+                            {% if subscription.tutor_support == 'priority' %}Priority{% endif %}
+                            Tutor Support </p>
+                     
+                    </li>
+                    {% endif %}
+
+                    {% if subscription.mentor %}
+                    <li class="list-group-item">
+                        <p><i class="fa-solid fa-person-chalkboard me-2 {% if subscription.current %}bg-secondary text-white {% else %} bg-{{subscription.color}} {% endif %} "></i> Personal Mentor </p>
+                    </li>
+                    {% endif %}
+                   
+                </ul>
+                <div class="footer">
+
+                    <!-- Remove membership on current subscription -->
+
+                    {% if subscription.current %}
+
+                    <button
+                    type="button"
+                    class="bg-secondary form-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#subscriptionModal"
+                   >
+                   <i class="fa fa-close" aria-hidden="true"></i>
+                   <span class="visually-hidden">Remove subscription</span>
+
+                   </button>
+                   {% include "includes/confirm_modal.html" %}
+
+                    {% else %}
+                    <form
+                    class="form"
+                    action="{% url 'add_to_cart' subscription.id %}"
+                    method="POST"
+                    >
+                    {% csrf_token %}
+                        <button type="submit" class="bg-{{subscription.color}} form-btn">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <span class="visually-hidden">Add to Cart</span>
+                        </button>
+                        <input type="hidden" name="item_type" value="subscription" >
+                        <input
+                        type="hidden"
+                        name="redirect_url"
+                        value="{{ request.path }}"
+                        >
+                    </form>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        
+        
+        {% endfor %}
+     
+	</div>
+</div>
+  {% endblock %}

@@ -1,0 +1,46 @@
+[
+  {
+    "model": "profiles.subscription",
+    "pk": 52,
+    "fields": {
+      "name": "Junior Dev",
+      "sku": "mm1Dx2y3Z",
+      "price": 25,
+      "mentor": true,
+      "free_delivery": true,
+      "product_discount": 5,
+      "program_discount": 10,
+      "color": "orange"
+    }
+  },
+  {
+    "model": "profiles.subscription",
+    "pk": 53,
+    "fields": {
+      "name": "Mid Dev",
+      "sku": "mm4Fb5c6A",
+      "price": 50,
+      "mentor": false,
+      "tutor_support": "normal",
+      "free_delivery": true,
+      "product_discount": 10,
+      "program_discount": 25,
+      "color": "green"
+    }
+  },
+  {
+    "model": "profiles.subscription",
+    "pk": 54,
+    "fields": {
+      "name": "Senior Dev",
+      "sku": "mm7hI8Jk9L",
+      "price": 150,
+      "mentor": true,
+      "tutor_support": "priority",
+      "free_delivery": true,
+      "product_discount": 25,
+      "program_discount": 100,
+      "color": "cyan"
+    }
+  }
+]
