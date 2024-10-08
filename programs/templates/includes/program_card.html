@@ -1,0 +1,68 @@
+<div class="">
+  <a
+    class="card program-card shadow border-grey overflow-hidden"
+    href="{% url 'program_detail' program.id %}"
+    title="Link to {{program.name}}"
+  >
+    <article class="row">
+      <div class="col-lg-4 order-lg-2 bg-dark p-0">
+        <img src="{{ program.image.url }}" class="card-image" alt="Program {{program.name}}">
+      </div>
+      <div class="col-lg-8">
+        <div class="card-body">
+          <!-- Program Sale Check  -->
+          {% if program.sale %}
+            <span
+              class="badge bg-success text-white position-absolute"
+              style="top: 0.5rem; right: 0.5rem; font-size: .9rem;"
+            >
+              {{program.sale}}% Sale
+            </span>
+          {% endif %}
+          <h2 class="h5 text-primary fw-bold title border-bottom p-0 mb-1">{{program.name}}</h2>
+          <p class="text-secondary p-2 border-bottom">
+            {{program.description}}
+          </p>
+
+          <div class="px-3">
+            <div class="my-2 d-flex text-secondary justify-content-between">
+              <div>
+                <i class="fa-solid fa-star text-warning"></i>
+                <strong class="text-dark">{{program.rating}}</strong>
+              </div>
+              <div>
+                {% if program.sale %}
+                <em class="text-danger text-decoration-line-through"
+                  >${{program.price}}</em
+                >
+                {% endif %}
+
+                <i class="fa-solid fa-dollar-sign text-success"></i>
+                <strong class="text-dark">{{program.total_final_price}}</strong>
+              </div>
+            </div>
+
+            <div class="my-2 d-flex text-secondary justify-content-between">
+              <div>
+                <i class="fa-solid fa-hourglass-start text-primary"></i>
+                <strong class="text-dark">{{program.length}}</strong>
+              </div>
+              <div>
+                <!-- Program Difficulty Check  -->
+
+                <i class="fa-solid fa-chart-line text-danger"></i>
+                {% if program.difficulty == 1 %}
+                <span class="badge bg-success">Beginner</span>
+                {% elif program.difficulty == 2 %}
+                <span class="badge text-dark bg-warning">Intermediate</span>
+                {% elif program.difficulty == 3 %}
+                <span class="badge bg-danger">Expert</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </a>
+</div>
