@@ -30,11 +30,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+tu04uvrd#-0t9rq$_kd@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv('DEBUG', 'True') == 'True' else False
 
-ALLOWED_HOSTS = ['e-handel-474b04331b25.herokuapp.com', 'localhost', '127.0.0.1', '8000-noahsamawi-visstesphere-oeewmeuatf2.ws-eu116.gitpod.io']
+ALLOWED_HOSTS = ['visste-sphere-12b88dbb48bc.herokuapp.com', 'localhost', '127.0.0.1', '8000-noahsamawi-visstesphere-oeewmeuatf2.ws-eu116.gitpod.io']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-noahsamawi-visstesphere-oeewmeuatf2.ws-eu116.gitpod.io',
-    'https://e-handel-474b04331b25.herokuapp.com'
+    'https://visste-sphere-12b88dbb48bc.herokuapp.com'
 ]
 
 # Application definition
