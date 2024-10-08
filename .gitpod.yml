@@ -1,0 +1,5 @@
+tasks:
+  - init: |
+      echo "export EMAIL_HOST_USER='your_email@gmail.com'" >> ~/.bashrc
+      echo "export EMAIL_HOST_PASSWORD='your_password'" >> ~/.bashrc
+      source ~/.bashrc
