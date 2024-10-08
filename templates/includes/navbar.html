@@ -1,0 +1,166 @@
+{% load static %}
+
+
+<div class="m-0 pb-3 pt-lg-1 position-relative">
+  <nav class="container sticky-nav navbar navbar-expand-lg navbar-light bg-light p-0">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bolder logo" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.webp' %}" alt="visste sphere logo">
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <!-- Product Dropdown-->
+          <li class="nav-item dropdown">
+            <a class="nav-link text-orange-secondary" href="#" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="text-orange-secondary fw-bold">VSphere <i class="fa-solid fa-store text-orange-secondary"></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productDropdown">
+              <li><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'products' %}?category=clothing">Clothing</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'products' %}?category=stationary">Stationary</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'products' %}?category=miscellaneous">Miscellaneous</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Programs Dropdown-->
+          <li class="nav-item dropdown">
+            <a class="nav-link text-orange-secondary" href="#" id="courseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="text-orange-secondary fw-bold">Courses <i class="fa-solid fa-graduation-cap text-orange-secondary"></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="courseDropdown">
+              <li><a class="dropdown-item" href="{% url 'programs' %}">All</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=fullstack">Full-Stack</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=ui_ux_design">UI/UX Design</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=devops">DevOps</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=data_science">Data Science</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=game_dev">Game Dev</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href='{% url 'programs' %}?category=mobile_app'>Mobile App</a>
+              </li>
+            </ul>
+          </li>
+       
+          <!-- Subscription Link -->
+        {%  if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-orange-secondary" href="{% url "subscriptions" %}">
+              <span class="text-orange-secondary fw-bold">Subscriptions <i class="fa-solid fa-trophy text-orange-secondary"></i>
+              </span>
+            </a>
+          </li> 
+        {% endif %}
+        </ul>
+
+
+
+        <div class="">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Profile/Auth Dropdown-->
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-capitalize" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                    {% if request.user.is_authenticated %}
+
+                    <span class="fw-bold">{{request.user.username}} <i class="fa-solid fa-user fa-lg"></i>
+                    </span>
+                 
+                    {% else %}
+                  <span class="text">Profile</span> 
+                 <i class="fa-solid fa-user fa-lg"></i>
+                    {% endif %}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+    
+                    {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url "profile" %}">Profile</a></li>
+    
+                    <li>
+                      <a class="dropdown-item" href="{% url 'my_courses' %}">My Courses</a>
+                    </li>
+
+                    {% if request.user.is_superuser or request.user.profile.moderator %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'add_product' %}">Add Products</a>
+                    </li>
+                    {% endif %}
+    
+                    <li><hr class="dropdown-divider"></li>
+    
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    
+                    {% else %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </li>
+                <!-- Cart Link-->
+                <li class="nav-item">
+                  <a class="nav-link m-0" href="{% url "view_cart" %}" aria-label="View Cart" aria-expanded="false">
+                    <p class='p-0 m-0'> 
+                      <span class='fw-bold d-md-none'>Cart</span> 
+                      
+                      <i class="fas fa-shopping-cart fa-lg position-relative h5">
+                      {% if cart_items|length > 0 %}
+                      <span class="cart-length-badge translate-middle badge rounded-pill bg-danger" style="font-size: x-small;">
+                        {{ cart_items|length }}
+                      </span>
+                      {% endif %}
+                    </i></p>
+                   
+                  
+                  </a>
+                </li>
+            
+              </ul>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  {% if request.user %}
+  {% if request.user.profile.active_subscription %}
+  <span class='membership bg-dark badge rounded-pill text-{{request.user.profile.active_subscription.color}}'> <i class="fa-solid fa-trophy me-2"></i>{{request.user.profile.active_subscription}} Member</span>
+  {% endif %}
+  {% endif %}
+</div>

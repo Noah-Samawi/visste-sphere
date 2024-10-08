@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block inner_content %}
+<hr>
+<h2 class="logo-font mb-4">{% trans "Sign Up" %}</h2>
+<hr>
+
+<form class="signup card-body cardbody-color p-lg-5 mx-auto" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  <div class="text-center">
+    <img src="{% static 'images/logo.webp' %}" class="img-fluid profile-image-pic img-thumbnail rounded-circle mb-2"
+      alt="profile">
+  </div>
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class='btn btn-color px-5 mb-5 w-100'>{% trans "Sign Up" %}</button>
+</form>
+
+
+{% blocktrans %}
+<div  class="form-text text-center mt-2 mb-5 text-dark">Already have an account? <a href="{{ login_url }}" class="link primary fw-bold"> Sign In</a>
+
+  {% endblocktrans %}
+
+</div>
+
+
+{% endblock %}
+
+

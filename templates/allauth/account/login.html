@@ -1,0 +1,59 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block inner_content %}
+
+<hr>
+<h2 class="logo-font mb-4">{% trans "Sign In" %}</h2>
+<hr>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% endif %}
+
+<form class="login card-body cardbody-color p-lg-5 mx-auto" method="POST" action="{% url 'account_login' %}">
+  <div class="text-center">
+    <img src="{% static 'images/logo.webp' %}" class="img-fluid profile-image-pic img-thumbnail rounded-circle mb-2"
+       alt="profile">
+  </div>
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="primaryAction btn btn-color px-5 mb-5 w-100" type="submit">{% trans "Sign In" %}</button>
+  
+</form>
+
+  {% blocktrans %}
+  <div class="form-text  text-center mt-2 text-dark">Not
+  Registered? <a href="{{ signup_url }}" class="link-primary fw-bold"> Create an
+    Account</a>
+{% endblocktrans %}
+
+</div>
+
+<div class="form-text  text-center mt-2 mb-5 text-dark">Forgot Password? <a href="{% url 'account_reset_password' %}" class="link-primary fw-bold"> Reset Password</a>
+</div>
+{% endblock %}
