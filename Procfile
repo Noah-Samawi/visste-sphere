@@ -1,1 +1,1 @@
-web: gunicorn visstesphere.wsgi:application
+web: gunicorn visste-sphere.wsgi
