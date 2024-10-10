@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'embed_video',
 
-    # Your apps
+    # apps
     'home',
     'products',
     'programs',
@@ -118,7 +118,7 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 
 # WSGI
@@ -188,17 +188,14 @@ else:
 STRIPE_CURRENCY = 'usd'
 
 # Email settings
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # Your Gmail email address
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Your Gmail app-specific password
 
-DEFAULT_FROM_EMAIL = 'visstesphere@example.com'
+DEFAULT_FROM_EMAIL = 'noah.alsamawi@gmail.com'  # Or any other sender email address
 
 # Website variables
 DELIVERY_COST = 5
