@@ -28,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['visste-sphere-93169428c40e.herokuapp.com',
-                'https://visste-sphere-93169428c40e.herokuapp.com/' ,'localhost']
+                'https://visste-sphere-93169428c40e.herokuapp.com/' ,'localhost', '127.0.0.1']
 
 
 # Application definition
