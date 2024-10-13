@@ -28,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = ['visste-sphere-93169428c40e.herokuapp.com',
-                'https://visste-sphere-93169428c40e.herokuapp.com/' ,'localhost', '127.0.0.1']
+                 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -201,7 +201,7 @@ if 'USE_AWS' in os.environ:
     STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media'
-    
+
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
