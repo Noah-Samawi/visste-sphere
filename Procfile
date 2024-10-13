@@ -1,1 +1,1 @@
-web: gunicorn visste-sphere.wsgi --log-file -
+web: gunicorn visstesphere.wsgi --log-file -
