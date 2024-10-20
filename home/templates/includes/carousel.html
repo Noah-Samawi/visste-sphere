@@ -1,155 +1,88 @@
 {% load static %}
 
-<div
-  id="carouselExampleIndicators"
-  class="carousel slide bg-dark rounded-3"
-  data-bs-ride="carousel"
->
+<div id="carouselExampleIndicators" class="carousel slide bg-dark rounded-3" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="1"
-      aria-label="Slide 2"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="2"
-      aria-label="Slide 3"
-    ></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div
-      class="carousel-item text-center item-center active py-2 text-light pb-5"
-    >
+    <!-- Slide 1 -->
+    <div class="carousel-item text-center item-center active py-2 text-light pb-5">
       <div class="img-box">
-        <img
-          src="{% static 'images/person1.webp' %}"
-          alt="testimonial person 1"
-          loading="lazy"
-        >
+        <img src="{% static 'images/person1.webp' %}" alt="Zeugnis Person 1" loading="lazy">
       </div>
-      <h3 class="h4 mt-1">Cozy Knit Jumper</h3>
+      <h3 class="h4 mt-1">Sport & Freizeitwaren</h3>
       <div class="star-rating">
         <ul class="list-inline">
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star-o text-warning"></i>
-          </li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star-o text-warning"></i></li>
         </ul>
       </div>
       <p class="testimonial text-center mx-auto">
-        Warmth meets tech in this cozy knit jumper. Perfect for coding or casual wear, it's both stylish and comfortable.
+        Entdecken Sie unsere Auswahl an Sport- und Freizeitwaren, die sowohl funktional als auch stilvoll sind. Ideal
+        für das Training oder die Freizeitgestaltung.
       </p>
-      <strong class="overview text-center mx-auto">Gold Berry</strong>
+      <strong class="overview text-center mx-auto">Sport & Freizeit Team</strong>
     </div>
 
+    <!-- Slide 2 -->
     <div class="carousel-item text-center item-center py-2 text-light pb-5">
       <div class="img-box">
-        <img
-          src="{% static 'images/person2.webp' %}"
-          alt="testimonial person 2"
-          loading="lazy"
-
-        >
+        <img src="{% static 'images/person2.webp' %}" alt="Zeugnis Person 2" loading="lazy">
       </div>
-      <h3 class="h4 mt-1">Mastering Flexbox and Grid Layouts</h3>
+      <h3 class="h4 mt-1">Haushaltswaren</h3> <!-- Changed the title -->
       <div class="star-rating">
         <ul class="list-inline">
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star-o text-warning"></i>
-          </li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star-o text-warning"></i></li>
         </ul>
       </div>
       <p class="testimonial text-center mx-auto">
-        The stress relief ball is a lifesaver! Instantly soothing, it's a must-have for relieving tension and stress.
+        Dieser Aufbewahrungskorb ist nicht nur funktional, sondern auch stilvoll! Perfekt für jede Einrichtung und einen
+        organisierten Raum.
       </p>
       <strong class="overview text-center mx-auto">Darrach Barneveld</strong>
     </div>
 
+    <!-- Slide 3 -->
     <div class="carousel-item text-center item-center py-2 text-light pb-5">
       <div class="img-box">
-        <img
-          src="{% static 'images/person3.webp' %}"
-          alt="testimonial person 3"
-          loading="lazy"
-
-        >
+        <img src="{% static 'images/person3.webp' %}" alt="Zeugnis Person 3" loading="lazy">
       </div>
-      <h3 class="h4 mt-1">Stress Relief Ball</h3>
+      <h3 class="h4 mt-1">Dekoration und Küchenutensilien</h3> <!-- Changed the title -->
       <div class="star-rating">
         <ul class="list-inline">
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star text-warning"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-star-o text-warning"></i>
-          </li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+          <li class="list-inline-item"><i class="fa fa-star-o text-warning"></i></li>
         </ul>
       </div>
       <p class="testimonial text-center mx-auto">
-        Mastering Flexbox and Grid Layouts course is a game-changer! Clear, concise, and practical lessons make learning a breeze
+        Die perfekte Ergänzung für Ihre Küche! Unsere einzigartigen Küchenutensilien sind sowohl praktisch als auch
+        schön gestaltet.
       </p>
       <strong class="overview text-center mx-auto">Tom Bombadil</strong>
     </div>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="prev"
-  >
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+    <span class="visually-hidden">Vorherige</span>
   </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="next"
-  >
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
+    <span class="visually-hidden">Nächste</span>
   </button>
 </div>
