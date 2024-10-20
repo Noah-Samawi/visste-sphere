@@ -4,7 +4,7 @@
 {% block extra_title %}Products{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
 {% endblock %}
 
 
@@ -12,10 +12,13 @@
 <header class="bg-dark">
   <div class="container px-4 px-lg-5 mt-5 mb-2">
     <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder">Shop in style</h1>
+      <h1 class="display-4 fw-bolder">Gestalte dein Zuhause stilvoll um</h1>
       <p class="lead fw-normal text-white-50 mb-0">
-        Choose from our extensive {% if current_categories %}<em class='text-info'> {{current_categories.friendly_name}}</em>{% endif %} products!
+        Entdecke praktische {% if current_categories %}<em class='text-info'>
+          {{current_categories.friendly_name}}</em>{% endif %} Lösungen, wunderschöne Deko und wichtige Küchenutensilien
+        für jeden Raum!
       </p>
+
     </div>
 
     <ul class="list-inline widget-list-inline text-center my-3">
@@ -23,44 +26,42 @@
         <a href="{% url 'products' %}">All</a>
       </li>
       <li class="list-inline-item m-1 {% if category == 'clothing' %}active{% endif %}">
-        <a href="{% url 'products' %}?category=clothing">Clothing</a>
+        <a href="{% url 'products' %}?category=clothing">Aufbewahrung</a>
       </li>
       <li class="list-inline-item m-1 {% if category == 'stationary' %}active{% endif %}">
-        <a href="{% url 'products' %}?category=stationary">Stationary</a>
+        <a href="{% url 'products' %}?category=stationary">Dekoration</a>
       </li>
       <li class="list-inline-item m-1 {% if category == 'miscellaneous' %}active{% endif %}">
-        <a class="" href="{% url 'products' %}?category=miscellaneous">Miscellaneous</a>
+        <a class="" href="{% url 'products' %}?category=miscellaneous">Küchenutensilien</a>
       </li>
-  </ul>
+    </ul>
 
   </div>
-</header>  
+</header>
 
 {% endblock %}
 
 {% block content %}
-    <!-- Product-->
-    <section class="py-3 bg-white">
-      <!-- Heading for accessibility-->
-      <h2 class='visually-hidden'>Products</h2> 
+<!-- Product-->
+<section class="py-3 bg-white">
+  <!-- Heading for accessibility-->
+  <h2 class='visually-hidden'>Products</h2>
 
-        {% url 'products' as url %}
-        {% with url=url %}
-            {% include "includes/searchbar.html" %}
-        {% endwith %}
+  {% url 'products' as url %}
+  {% with url=url %}
+  {% include "includes/searchbar.html" %}
+  {% endwith %}
 
-        
-        <div class="container px-lg-5 mt-5">
-          <div
-            class="row row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
-          >
-          {% for product in products  %}
 
-          {% include "includes/product_card.html" with product=product %}
+  <div class="container px-lg-5 mt-5">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      {% for product in products %}
 
-          {% endfor %}
-     
-          </div>
-        </div>
-      </section>
+      {% include "includes/product_card.html" with product=product %}
+
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
 {% endblock %}

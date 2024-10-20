@@ -13,19 +13,18 @@
 <header class="bg-dark">
   <div class="container px-4 px-lg-5 my-4 my-lg-5">
     <article class="text-center text-white">
-      <h1 class="display-4 fw-bolder">Subscriptions</h1>
+      <h1 class="display-4 fw-bolder">Abonnements</h1>
       {% if request.user.profile.active_subscription %}
-      <p class="lead fw-normal text-white-50 mb-0">Your membership is <span class="fw-bold text-{{request.user.profile.active_subscription.color}} font-weight-bold text-capitalize">{{request.user.profile.active_subscription}}</span></p>
+      <p class="lead fw-normal text-white-50 mb-0">Deine Mitgliedschaft ist <span class="fw-bold text-{{request.user.profile.active_subscription.color}} font-weight-bold text-capitalize">{{request.user.profile.active_subscription}}</span></p>
       {% else %}
       
       <p class="lead fw-normal text-white-50 mb-0">
-        Become a member of <span class="text-info font-weight-bold">Visste Sphere</span> and enjoy the benefits!
-    </p>
-    {% endif %}
+        Werde Mitglied bei <span class="text-info font-weight-bold">Visste Sphere</span> und genieße die Vorteile!
+      </p>
+      {% endif %}
     </article>
   </div>
 </header>
-
 {% endblock %}
 
 {% block content %}

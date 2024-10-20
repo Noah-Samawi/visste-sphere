@@ -10,69 +10,69 @@
 
 {% block page_header %}
 <header class="bg-dark">
-    <div class="container px-4 px-lg-5 mt-5 mb-2">
-      <div class="text-center text-white">
-        <h1 class="display-4 fw-bolder">Expand your knowledge</h1>
-        <p class="lead fw-normal text-white-50 mb-0">
-          Elevate your expertise with our {% if current_categories %}<em class='text-info'> {{current_categories.friendly_name}} </em>{% endif %}courses!        
-        </p>
-      </div>
+  <div class="container px-4 px-lg-5 mt-5 mb-2">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Entdecke einzigartige Produkte</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Finde besondere Schätze in unseren Kategorien {% if current_categories %}<em class='text-info'>
+          {{current_categories.friendly_name}} </em>{% endif %} und mehr!
+      </p>
 
-      <!-- Navigation Widgets -->
-      <ul class="list-inline widget-list-inline text-center my-3">
-        <li class="list-inline-item m-1 {% if not category %}active{% endif %}">
-          <a href="{% url 'programs' %}">All</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'fullstack' %}active{% endif %}">
-          <a href="{% url 'programs' %}?category=fullstack">Full-Stack</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'ui_ux_design' %}active{% endif %}">
-          <a href="{% url 'programs' %}?category=ui_ux_design">UI/UX Design</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'devops' %}active{% endif %}">
-          <a class="" href="{% url 'programs' %}?category=devops">DevOps</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'data_science' %}active{% endif %}">
-          <a class="" href="{% url 'programs' %}?category=data_science">Data Science</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'game_dev' %}active{% endif %}">
-          <a class="" href="{% url 'programs' %}?category=game_dev">Game Dev</a>
-        </li>
-        <li class="list-inline-item m-1 {% if category == 'mobile_app' %}active{% endif %}">
-          <a class="" href='{% url 'programs' %}?category=mobile_app'>Mobile App</a>
-        </li>
-    </ul>
     </div>
-</header>  
+
+    <!-- Navigation Widgets -->
+    <ul class="list-inline widget-list-inline text-center my-3">
+      <li class="list-inline-item m-1 {% if not category %}active{% endif %}">
+        <a href="{% url 'programs' %}">All</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'fullstack' %}active{% endif %}">
+        <a href="{% url 'programs' %}?category=fullstack">Kleidung-Mode</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'ui_ux_design' %}active{% endif %}">
+        <a href="{% url 'programs' %}?category=ui_ux_design">Elektronik</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'devops' %}active{% endif %}">
+        <a class="" href="{% url 'programs' %}?category=devops">Vintage-Artikel</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'data_science' %}active{% endif %}">
+        <a class="" href="{% url 'programs' %}?category=data_science">Spielzeug</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'game_dev' %}active{% endif %}">
+        <a class="" href="{% url 'programs' %}?category=game_dev">Sport & Freiz</a>
+      </li>
+      <li class="list-inline-item m-1 {% if category == 'mobile_app' %}active{% endif %}">
+        <a class="" href="{% url 'programs' %}?category=mobile_app">Gadgets</a>
+      </li>
+    </ul>
+  </div>
+</header>
 
 {% endblock %}
 
 {% block content %}
-    <!-- Program Info Section -->
-    <section class="py-3 bg-white">
-      <h2 class='visually-hidden'>Programs</h2> 
+<!-- Program Info Section -->
+<section class="py-3 bg-white">
+  <h2 class='visually-hidden'>Programs</h2>
 
-        <!-- Search Bar -->
-        {% url 'programs' as url %}
-        {% with url=url %}
-            {% include "includes/searchbar.html" %}
-        {% endwith %}
+  <!-- Search Bar -->
+  {% url 'programs' as url %}
+  {% with url=url %}
+  {% include "includes/searchbar.html" %}
+  {% endwith %}
 
-        
-      <div class="container px-4 px-lg-5 mt-5">
-          <div
-            class="row row-cols-lg-2 g-3"
-          >
-          {% for program in programs  %}
-            <!-- Program Preview Card -->
 
-          {% include "includes/program_card.html" with program=program %}
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row row-cols-lg-2 g-3">
+      {% for program in programs %}
+      <!-- Program Preview Card -->
 
-          {% endfor %}
-     
-          </div>
-        </div>
-      </section>
-  
+      {% include "includes/program_card.html" with program=program %}
+
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
 
 {% endblock %}

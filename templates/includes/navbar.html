@@ -24,20 +24,20 @@
           <!-- Product Dropdown-->
           <li class="nav-item dropdown">
             <a class="nav-link text-orange-secondary" href="#" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="text-orange-secondary fw-bold">VSphere <i class="fa-solid fa-store text-orange-secondary"></i>
+              <span class="text-orange-secondary fw-bold">Haushaltswaren <i class="fa-solid fa-store text-orange-secondary"></i>
               </span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="productDropdown">
               <li><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="{% url 'products' %}?category=clothing">Clothing</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=clothing">Aufbewahrung</a>
               </li>
               <li>
-                <a class="dropdown-item" href="{% url 'products' %}?category=stationary">Stationary</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=stationary">Dekoration</a>
               </li>
               <li>
-                <a class="dropdown-item" href="{% url 'products' %}?category=miscellaneous">Miscellaneous</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=miscellaneous">Küchenutensilien</a>
               </li>
             </ul>
           </li>
@@ -45,29 +45,29 @@
           <!-- Programs Dropdown-->
           <li class="nav-item dropdown">
             <a class="nav-link text-orange-secondary" href="#" id="courseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="text-orange-secondary fw-bold">Courses <i class="fa-solid fa-graduation-cap text-orange-secondary"></i>
+              <span class="text-orange-secondary fw-bold">Verschiedenes <i class="fa-solid fa-graduation-cap text-orange-secondary"></i>
               </span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="courseDropdown">
               <li><a class="dropdown-item" href="{% url 'programs' %}">All</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="{% url 'programs' %}?category=fullstack">Full-Stack</a>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=fullstack">Kleidung-Mode</a>
               </li>
               <li>
-                <a class="dropdown-item" href="{% url 'programs' %}?category=ui_ux_design">UI/UX Design</a>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=ui_ux_design">Elektronik</a>
               </li>
               <li>
                 <a class="dropdown-item" href="{% url 'programs' %}?category=devops">DevOps</a>
               </li>
               <li>
-                <a class="dropdown-item" href="{% url 'programs' %}?category=data_science">Data Science</a>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=data_science">Spielzeug</a>
               </li>
               <li>
-                <a class="dropdown-item" href="{% url 'programs' %}?category=game_dev">Game Dev</a>
+                <a class="dropdown-item" href="{% url 'programs' %}?category=game_dev">Sport & Freizeit</a>
               </li>
               <li>
-                <a class="dropdown-item" href='{% url 'programs' %}?category=mobile_app'>Mobile App</a>
+                <a class="dropdown-item" href='{% url 'programs' %}?category=mobile_app'>Gadgets</a>
               </li>
             </ul>
           </li>
@@ -76,7 +76,7 @@
         {%  if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link text-orange-secondary" href="{% url "subscriptions" %}">
-              <span class="text-orange-secondary fw-bold">Subscriptions <i class="fa-solid fa-trophy text-orange-secondary"></i>
+              <span class="text-orange-secondary fw-bold">Abonnements <i class="fa-solid fa-trophy text-orange-secondary"></i>
               </span>
             </a>
           </li> 
