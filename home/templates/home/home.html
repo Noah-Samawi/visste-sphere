@@ -4,9 +4,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-
 {% endblock %}
-
 
 {% block page_header %}
 <header class="py-5">
@@ -15,15 +13,16 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-8 col-xl-7 col-xxl-6">
         <div class="my-5 text-center text-xl-start">
-          <h1 class="display-5 fw-bolder text-white mb-2"> STORE</h1>
+          <h1 class="display-5 fw-bolder text-white mb-2">STORE</h1>
           <p class="lead text-white-50 mb-4">
             Bei uns findest du eine ständig wechselnde Auswahl an hochwertigen Produkten zu unschlagbaren Preisen. Von
-            Elektronik über Mode bis hin zu Haushaltswaren – wir haben für jeden Geschmack etwas dabei. Alle Artikel
-            sind sorgfältig geprüft und bieten dir die Chance, echte Schnäppchen zu machen. Lass dich überraschen!
+            Kleidung und Elektronik über Haushaltswaren – wir haben für jeden Geschmack etwas dabei. Alle Artikel sind
+            sorgfältig geprüft und bieten dir die Chance, echte Schnäppchen zu machen. Lass dich überraschen!
           </p>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-            <a class="btn bg-orange btn-lg px-4 me-sm-3 text-white fw-bold" href="{% url 'products' %}">Shop Now</a>
-            <a class="btn btn-outline-light btn-lg px-4" href="{% url 'programs' %}">Entdecke Mehr</a>
+            <a class="btn bg-orange btn-lg px-4 me-sm-3 text-white fw-bold" href="{% url 'products' %}">Jetzt
+              Einkaufen</a>
+            <a class="btn btn-outline-light btn-lg px-4" href="{% url 'programs' %}">Mehr Entdecken</a>
           </div>
         </div>
       </div>
@@ -43,46 +42,45 @@
     <div class="row">
       <div class="col-lg-4 mb-5 mb-lg-0">
         <h2 class="fw-bolder mb-0">
-          Embark on your learning adventure with a touch of sophistication
-          and style.
+          Entdecke unsere vielseitige Produktpalette.
         </h2>
       </div>
       <div class="col-lg-8">
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mb-5 h-100">
             <div class="feature bg-orange bg-gradient text-white rounded-3 mb-3">
-              <i class="fa-solid fa-shirt"></i>
+              <i class="fa-solid fa-tshirt"></i>
             </div>
-            <h2 class="h5">Aufbewahrung</h2>
+            <h2 class="h5">Kleidung & Mode</h2>
             <p class="mb-0">
-              Elevate your style with our trendy and versatile collection.
+              Finde deinen Stil mit unserer trendigen und vielfältigen Modekollektion.
             </p>
           </div>
           <div class="col mb-5 h-100">
             <div class="feature bg-orange bg-gradient text-white rounded-3 mb-3">
-              <i class="fa-solid fa-mug-hot"></i>
+              <i class="fa-solid fa-plug"></i>
             </div>
-            <h2 class="h5">Miscellaneous</h2>
+            <h2 class="h5">Elektronik</h2>
             <p class="mb-0">
-              Discover unique and innovative products that enhance your everyday life.
+              Entdecke die neueste Technologie für Zuhause und unterwegs.
             </p>
           </div>
           <div class="col mb-5 mb-md-0 h-100">
             <div class="feature bg-orange bg-gradient text-white rounded-3 mb-3">
-              <i class="fa-solid fa-book"></i>
+              <i class="fa-solid fa-box-open"></i>
             </div>
-            <h2 class="h5">Stationary</h2>
+            <h2 class="h5">Vintage-Artikel</h2>
             <p class="mb-0">
-              Stay organized and inspired with our chic and functional stationery essentials.
+              Finde einzigartige Vintage-Schätze aus vergangenen Zeiten.
             </p>
           </div>
           <div class="col h-100">
             <div class="feature bg-orange bg-gradient text-white rounded-3 mb-3">
-              <i class="fa-solid fa-school"></i>
+              <i class="fa-solid fa-gamepad"></i>
             </div>
-            <h2 class="h5">Courses</h2>
+            <h2 class="h5">Spielzeug & Gadgets</h2>
             <p class="mb-0">
-              Unlock your potential and learn new skills with our comprehensive online courses.
+              Entdecke kreative Spielzeuge und coole Gadgets für jedes Alter.
             </p>
           </div>
         </div>
@@ -90,6 +88,7 @@
     </div>
   </div>
 </section>
+
 <!-- Delivery section-->
 <div class="py-5 bg-light">
   <div class="container">
@@ -98,41 +97,42 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="text-center p-3 card">
             <i class="fa-solid fa-truck h1 text-primary"></i>
-            <h2 class='h6'>Free Delivery / Admin Charges</h2>
-            <p>On all member orders</p>
+            <h2 class='h6'>Kostenlose Lieferung / Verwaltungskosten</h2>
+            <p>Für alle Bestellungen von Mitgliedern</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="text-center p-3 card">
             <i class="fa-solid fa-rotate-left h1 text-danger"></i>
-            <h2 class='h6'>Return Policy</h2>
-            <p>Free Shipping on all order</p>
+            <h2 class='h6'>Rückgaberecht</h2>
+            <p>Kostenloser Versand bei allen Bestellungen</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="text-center p-3 card">
             <i class="fa-solid fa-headset h1 text-success"></i>
             <h2 class='h6'>24/7 Support</h2>
-            <p>Free Shipping on all order</p>
+            <p>Hilfe rund um die Uhr für unsere Kunden</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="text-center p-3 card">
             <i class="fa-regular fa-credit-card h1"></i>
-            <h2 class='h6'>Secure Payment</h2>
-            <p>Free Shipping on all order</p>
+            <h2 class='h6'>Sichere Zahlung</h2>
+            <p>Garantiert sichere Bezahlung für deine Bestellungen</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- Testimonial section-->
 <section class="py-5 bg-white">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-6">
-        <h2 class="fw-bolder text-center mb-5">Our Happy Customers</h2>
+        <h2 class="fw-bolder text-center mb-5">Unsere zufriedenen Kunden</h2>
       </div>
     </div>
     {% include "includes/carousel.html" %}
@@ -142,10 +142,10 @@
       <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
         <div class="mb-4 mb-xl-0">
           <div class="fs-3 fw-bold">
-            New products and courses every year.
+            Neue Produkte und Kategorien jedes Jahr.
           </div>
           <div>
-            Sign up to our newsletter for exclusive offers and updates.
+            Melde dich für unseren Newsletter an, um exklusive Angebote und Updates zu erhalten.
           </div>
         </div>
 
@@ -158,10 +158,10 @@
               target="_blank">
               <div id="mc_embed_signup_scroll">
                 <div class="indicates-required text-dark">
-                  <span class="asterisk">*</span> indicates required
+                  <span class="asterisk">*</span> zeigt erforderliche Felder an
                 </div>
                 <div class="mc-field-group text-dark fw-bolder">
-                  <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email"
+                  <label for="mce-EMAIL">E-Mail-Adresse <span class="asterisk">*</span></label><input type="email"
                     name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""><span
                     id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
                 </div>
@@ -170,13 +170,12 @@
                   <div class="response" id="mce-success-response" style="display: none"></div>
                 </div>
                 <div aria-hidden="true" style="position: absolute; left: -5000px">
-                  /* real people should not fill this in and expect good things - do
-                  not remove this or risk form bot signups */
-                  <label for="bot-signup-input" style="display: none">Bot Signup Input</label>
+                  <label for="bot-signup-input" style="display: none">Bot-Anmeldeeingabe</label>
                   <input type="text" name="b_d4616ca128cb857ad279711e3_d8a843f98b" id="bot-signup-input" tabindex="-1"
                     value="" aria-hidden="true">
                 </div>
                 <div class="optionalParent">
+
                   <div class="clear foot">
                     <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
                     <p style="margin: 0px auto">
@@ -204,9 +203,10 @@
         </div>
 
         <div class="small">
-          We care about privacy, and will never share your data.
-          Read up on our polciy <a href="{% url 'privacy' %}" class='link-primary fw-bolder'>here</a>.
+          Wir legen großen Wert auf den Schutz deiner Privatsphäre und werden deine Daten niemals weitergeben.
+          Lies unsere Datenschutzrichtlinien <a href="{% url 'privacy' %}" class='link-primary fw-bolder'>hier</a>.
         </div>
+
       </div>
     </aside>
 
