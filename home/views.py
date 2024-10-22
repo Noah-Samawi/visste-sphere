@@ -18,10 +18,15 @@ def privacy(request):
 # Google verification view
 def google_verification(request):
     """ A view to return the Google verification file """
-    file_path = os.path.join('static', 'google621ef7f3bda07ae5.html')
-    with open(file_path, 'r') as file:
-        content = file.read()
-    return HttpResponse(content, content_type="text/html")
+    file_path = os.path.join(settings.BASE_DIR, 'home', 'static', 'google621ef7f3bda07ae5.html')
+    
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return HttpResponse(content, content_type="text/html")
+    except FileNotFoundError:
+        return HttpResponse("File not found.", status=404)
+
 
 
 # Error handling views
