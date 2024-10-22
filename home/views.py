@@ -1,4 +1,5 @@
 """Home views"""
+from django.conf import settings
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
@@ -26,7 +27,6 @@ def google_verification(request):
         return HttpResponse(content, content_type="text/html")
     except FileNotFoundError:
         return HttpResponse("File not found.", status=404)
-
 
 
 # Error handling views
