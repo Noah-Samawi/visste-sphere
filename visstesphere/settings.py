@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'visste-sphere-93169428c40e.herokuapp.com',
     'localhost',
     '127.0.0.1',
+    'vissta-sphere.com', 'www.vissta-sphere.com',
 ]
 
 # Application definition
