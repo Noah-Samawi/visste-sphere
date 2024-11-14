@@ -198,113 +198,9 @@ The font used in this project is Segoe UI Roboto, which give a standard feel as 
 
 #### Desktop
 
-<details><summary>Home</summary>
-<img src="./documentation/images/wireframes/homepage.png">
-</details>
-<details><summary>Products</summary>
-<img src="./documentation/images/wireframes/productpage.png">
-</details>
-<details><summary>Product Detail</summary>
-<img src="./documentation/images/wireframes/productdetailpage.png">
-</details>
-<details><summary>Programs</summary>
-<img src="./documentation/images/wireframes/programpage.png">
-</details>
-<details><summary>Program Detail</summary>
-<img src="./documentation/images/wireframes/programdetailpage.png">
-</details>
-<details><summary>Subscription</summary>
-<img src="./documentation/images/wireframes/subscriptionpage.png">
-</details>
-<details><summary>Cart</summary>
-<img src="./documentation/images/wireframes/cartpage.png">
-</details>
-<details><summary>Checkout</summary>
-<img src="./documentation/images/wireframes/checkoutpage.png">
-</details>
-<details><summary>Profile</summary>
-<img src="./documentation/images/wireframes/profilepage.png">
-</details>
-<details><summary>Courses</summary>
-<img src="./documentation/images/wireframes/mycoursespage.png">
-</details>
-<details><summary>Login/Register</summary>
-<img src="./documentation/images/wireframes/loginregisterpage.png">
-</details>
-<details><summary>Thank You</summary>
-<img src="./documentation/images/wireframes/thankyoupage.png">
-</details>
 
 #### Mobile
 
-<details><summary>Home</summary>
-<img src="./documentation/images/wireframes/homepagemobile.png">
-</details>
-<details><summary>Products</summary>
-<img src="./documentation/images/wireframes/productpagemobile.png">
-</details>
-<details><summary>Product Detail</summary>
-<img src="./documentation/images/wireframes/productdetailpagemobile.png">
-</details>
-<details><summary>Programs</summary>
-<img src="./documentation/images/wireframes/programpagemobile.png">
-</details>
-<details><summary>Program Detail</summary>
-<img src="./documentation/images/wireframes/programdetailpagemobile.png">
-</details>
-<details><summary>Subscription</summary>
-<img src="./documentation/images/wireframes/subscriptionpagemobile.png">
-</details>
-<details><summary>Cart</summary>
-<img src="./documentation/images/wireframes/cartpagemobile.png">
-</details>
-<details><summary>Checkout</summary>
-<img src="./documentation/images/wireframes/checkoutpagemobile.png">
-</details>
-<details><summary>Profile</summary>
-<img src="./documentation/images/wireframes/productdetailpagemobile.png">
-</details>
-<details><summary>Courses</summary>
-<img src="./documentation/images/wireframes/mycoursespagemobile.png">
-</details>
-
-### Agile Methodology
-
-#### Overview
-
-This project adhered to agile principles, allowing for the meticulous planning of website features through the creation of user stories. Each story included specific acceptance criteria and tasks, facilitating clear objectives. Grouping these stories into EPIC milestones enabled a focused approach to addressing key elements of the site, ensuring necessary prerequisites were distinctly outlined for successful implementation.
-
-#### EPICS - Milestones
-
-In the Agile methodology framework, user stories are categorised into eight EPICs or Milestones. Moreover, an additional set of Milestones, referred to as Error Handling, was established specifically to address any errors encountered during testing, development, or optimisation of site elements with refined code or enhancements.
-
-<details><summary>Milestones</summary>
-<img src="./documentation/images/milestones.png">
-</details>
-
-#### User Stories - Issues
-
-The user story issue format includes the user story, acceptance criteria, and tasks, detailing essential steps for issue resolution. Whenever feasible, commit messages are linked to their respective issues during development, ensuring the significance of each commit and visually tracking progress on project issues. Milestones, Kanban boards, and other Agile tools are employed to monitor these issues effectively.
-
-<details><summary>User Story</summary>
-<img src="./documentation/images/issues.png">
-</details>
-
-#### MoSCoW Prioritisation
-
-The project utilised the "MoSCoW" technique to categorise and prioritise features and requirements effectively. "MoSCoW" represents "Must have, Should have, Could have, and Won't have," aiding in organising and prioritising features. This method guides the development process, ensuring that critical elements are addressed as a top priority.
-
-<details><summary>MoSCoW</summary>
-<img src="./documentation/images/moscow.png">
-</details>
-
-#### GitHub Projects/Kanban
-
-The project implemented a simple Kanban Board structure, comprising columns like Todo, In Progress, and Done. This arrangement offered a well-organised method for monitoring task progress, facilitating visualising and managing the workflow during development. The GitHub project Kanban was linked to the repository for consistent reference.
-
-<details><summary>Kanban</summary>
-<img src="./documentation/images/kanban.png">
-</details>
 
 #### Late Design Changes
 
@@ -319,7 +215,7 @@ The navigation bar is a consistent element across all pages, designed using Boot
 The mobile version of the navbar has all the content rendered when a hamburger icon is clicked. When clicked a dropdown display is rendered showing all navigation links.
 
 <details><summary>Navbar</summary>
-<img src="./documentation/images/features/navbar.png">
+<img src="./documentation/features/navbar.png">
 </details>
 
 <details><summary>Mobile</summary>
@@ -582,7 +478,7 @@ The B2C (Business-to-Consumer) ecommerce model is adopted for CISwag as it is an
 
 The main target audience will be software engineering students or existing developers.
 
-CI Swag's marketing strategy will focus on online channels to boost traffic and engagement. There will be an initial setup as seen in this project followed by the hypothesis of a marketing strategy that can be used when payments/business accounts are installed.
+Vissta Sphere's marketing strategy will focus on online channels to boost traffic and engagement. There will be an initial setup as seen in this project followed by the hypothesis of a marketing strategy that can be used when payments/business accounts are installed.
 
 ### Initial Plan
 
@@ -590,7 +486,7 @@ Facebook will serve as the primary platform, with a dedicated business page prom
 
 Additionally, Mailchimp will be utilized for weekly newsletters, updating subscribers on new offerings, promotions, and site enhancements. Emails of users can then be input into FB, google and other online providers to build an audience list.
 
-By combining social media outreach with targeted email marketing, CI Swag aims to effectively engage its audience, drive website traffic, and enhance brand visibility in the competitive ecommerce landscape.
+By combining social media outreach with targeted email marketing, Vissta Sphere aims to effectively engage its audience, drive website traffic, and enhance brand visibility in the competitive ecommerce landscape.
 
 ![Facebook Banner](./documentation/images/fbbanner.png)
 ![Facebook Page](./documentation/images/fbpage.png)
@@ -911,13 +807,11 @@ For Readme/Testing templates inspiration and guidance from [BookHeaven](https://
 ### Media
 
 All Media images on this website were created using [Leondardo AI](https://leonardo.ai/)
-[Hero Image](https://www.linkedin.com/posts/melinda-zhang-2020_the-weekend-ended-with-a-blast-our-activity-6975486245997056001-W-_I/)
-[Default Product Image](https://nayemdevs.com/changing-the-default-thumbnail-placeholder-of-woocommerce-product-is-easy/)
 [Demo Course Video](https://www.youtube.com/watch?v=TjPFZaMe2yw&t=2s)
 
 ### Code
 
-- Boutique Ado CI Walkthrough was used for the base of this project
+- Boutique Ado  Walkthrough was used for the base of this project
 - [Content Type Framework](https://docs.djangoproject.com/en/5.0/ref/contrib/contenttypes/)
 - [Content Type Admin Crud](https://copyprogramming.com/howto/how-can-i-customize-the-display-of-a-model-using-contenttypes-in-the-admin)
 - [Bootstrap Templates](https://startbootstrap.com/templates/ecommerce)
@@ -925,9 +819,3 @@ All Media images on this website were created using [Leondardo AI](https://leona
 - [Basic Automated Tests](https://learndjango.com/tutorials/django-testing-tutorial)
 - [Client Testing](https://docs.djangoproject.com/en/5.0/topics/testing/tools/)
 - [Custom Template Tags](https://realpython.com/django-template-custom-tags-filters/#:~:text=Custom%20tags%20and%20filters%20live,to%20load%20the%20tag%20library.)
-
-### Acknowledgements
-
-I would personally like to thank all people who underwent testing for this website. The critial feedback was instrumental in providing a good user experience, finding edge case errors and generally keeping me motivated to improve the website. John Paul Larkin, Megan ODonohoe, Juan Boccia, Izabella Lopes, Gary Donlan, Alan Bushell and Dayana.
-
-I would finally like to thank my mentor Antonio Rodriguez who helped identify critical issues and bugs along the way.
