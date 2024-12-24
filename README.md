@@ -1,6 +1,6 @@
 # CI-Swag PP5
 
-[(Developer: Darrach Barneveld)](https://github.com/Noah-Samawi)
+[(Developer: Noah Al-Samawi)](https://github.com/Noah-Samawi)
 
 [Link to deployed site](https://www.vissta-sphere.com/ or https://visste-sphere-93169428c40e.herokuapp.com/)
 

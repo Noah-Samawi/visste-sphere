@@ -31,6 +31,7 @@ DEBUG = True
 # Update ALLOWED_HOSTS without trailing slashes
 ALLOWED_HOSTS = [
     'visste-sphere-93169428c40e.herokuapp.com',
+    '8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
     'localhost',
     '127.0.0.1',
     'vissta-sphere.com', 'www.vissta-sphere.com',
