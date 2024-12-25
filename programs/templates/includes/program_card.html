@@ -1,3 +1,4 @@
+{% load static %}
 <div class="">
   <a
     class="card program-card shadow border-grey overflow-hidden"
@@ -6,7 +7,11 @@
   >
     <article class="row">
       <div class="col-lg-4 order-lg-2 bg-dark p-0">
-        <img src="{{ program.image.url }}" class="card-image" alt="Program {{program.name}}">
+        {% if program.image %}
+          <img src="{{ program.image.url }}" class="card-image" alt="Program {{program.name}}">
+        {% else %}
+          <img src="{% static 'images/js-array-methods.png' %}" class="card-image" alt="Default image">
+        {% endif %}
       </div>
       <div class="col-lg-8">
         <div class="card-body">
