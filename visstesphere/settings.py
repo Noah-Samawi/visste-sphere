@@ -36,6 +36,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'vissta-sphere.com', 'www.vissta-sphere.com',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io'
+]
+
 
 # Application definition
 INSTALLED_APPS = [
