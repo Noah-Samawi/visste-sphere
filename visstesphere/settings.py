@@ -25,8 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEBUG' in os.environ
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+# Ensure SECRET_KEY is set in production
+if not SECRET_KEY and not DEBUG:
+    raise ValueError("SECRET_KEY environment variable must be set in production!")
 
 # Update ALLOWED_HOSTS without trailing slashes
 ALLOWED_HOSTS = [
@@ -34,11 +37,27 @@ ALLOWED_HOSTS = [
     '8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
     'localhost',
     '127.0.0.1',
-    'vissta-sphere.com', 'www.vissta-sphere.com',
+    'vissta-sphere.com',
+    'www.vissta-sphere.com',
+    '.vercel.app',  # Vercel deployment domains
+    '.now.sh',  # Legacy Vercel domains
 ]
+
+# Get Vercel URL from environment if available
+VERCEL_URL = os.environ.get('VERCEL_URL', '')
+if VERCEL_URL:
+    ALLOWED_HOSTS.append(VERCEL_URL)
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io'
+    'https://8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
+    'https://visste-sphere-93169428c40e.herokuapp.com',
+    'https://vissta-sphere.com',
+    'https://www.vissta-sphere.com',
 ]
+
+# Add Vercel URL to CSRF_TRUSTED_ORIGINS if available
+if VERCEL_URL:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{VERCEL_URL}')
 
 
 # Application definition
