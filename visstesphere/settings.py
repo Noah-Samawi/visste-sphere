@@ -146,15 +146,45 @@ WSGI_APPLICATION = 'visstesphere.wsgi.application'
 
 # Database configuration
 database_url = os.environ.get('DATABASE_URL', '').strip()
+
+# Debug logging for Vercel (only in production)
+if IS_VERCEL:
+    import sys
+    if database_url:
+        # Log that DATABASE_URL is set (but don't log the full URL for security)
+        print(f"INFO: DATABASE_URL is set (length: {len(database_url)}, starts with: {database_url[:20]}...)", file=sys.stderr)
+    else:
+        print("ERROR: DATABASE_URL is not set in Vercel environment!", file=sys.stderr)
+
 if database_url and database_url.startswith(('postgresql://', 'postgres://', 'mysql://', 'sqlite://')):
     try:
+        # Parse database URL - dj_database_url handles SSL options from query string
+        db_config = dj_database_url.parse(database_url)
+        
+        # Ensure SSL is properly configured for Neon/PostgreSQL
+        # If sslmode is in OPTIONS, ensure it's properly formatted for psycopg2
+        if 'OPTIONS' in db_config and 'sslmode' in db_config['OPTIONS']:
+            # psycopg2 uses 'sslmode' directly in OPTIONS
+            # The URL query parameters are already parsed into OPTIONS by dj_database_url
+            pass
+        
+        # For Neon PostgreSQL, ensure SSL is required
+        if db_config.get('ENGINE') == 'django.db.backends.postgresql':
+            if 'OPTIONS' not in db_config:
+                db_config['OPTIONS'] = {}
+            # Ensure sslmode is set if not already present
+            if 'sslmode' not in db_config['OPTIONS']:
+                db_config['OPTIONS']['sslmode'] = 'require'
+        
         DATABASES = {
-            "default": dj_database_url.parse(database_url)
+            "default": db_config
         }
     except Exception as e:
         # Log database URL parsing error but don't crash
         import sys
         print(f"Warning: Failed to parse DATABASE_URL: {e}", file=sys.stderr)
+        import traceback
+        print(traceback.format_exc(), file=sys.stderr)
         # Fallback to SQLite for development
         DATABASES = {
             'default': {
