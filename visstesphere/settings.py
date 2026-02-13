@@ -46,24 +46,32 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'vissta-sphere.com',
     'www.vissta-sphere.com',
-    '.vercel.app',  # Vercel deployment domains
+    '.vercel.app',  # All Vercel deployment domains (Django supports leading dot)
     '.now.sh',  # Legacy Vercel domains
+    'visste-sphere.vercel.app',  # Specific Vercel domain
 ]
 
 # Get Vercel URL from environment if available
 VERCEL_URL = os.environ.get('VERCEL_URL', '')
 if VERCEL_URL:
-    ALLOWED_HOSTS.append(VERCEL_URL)
+    # Remove protocol if present
+    VERCEL_URL = VERCEL_URL.replace('https://', '').replace('http://', '').strip()
+    if VERCEL_URL and VERCEL_URL not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(VERCEL_URL)
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
     'https://visste-sphere-93169428c40e.herokuapp.com',
     'https://vissta-sphere.com',
     'https://www.vissta-sphere.com',
+    'https://visste-sphere.vercel.app',  # Specific Vercel domain
 ]
 
 if VERCEL_URL:
     CSRF_TRUSTED_ORIGINS.append(f'https://{VERCEL_URL}')
+    
+# Add common Vercel patterns (will be validated by Django)
+# Note: Django doesn't support wildcards in CSRF_TRUSTED_ORIGINS, so we add specific domains
 
 # Application definition
 INSTALLED_APPS = [
@@ -139,13 +147,28 @@ WSGI_APPLICATION = 'visstesphere.wsgi.application'
 # Database configuration
 database_url = os.environ.get('DATABASE_URL', '').strip()
 if database_url and database_url.startswith(('postgresql://', 'postgres://', 'mysql://', 'sqlite://')):
-    DATABASES = {
-        "default": dj_database_url.parse(database_url)
-    }
+    try:
+        DATABASES = {
+            "default": dj_database_url.parse(database_url)
+        }
+    except Exception as e:
+        # Log database URL parsing error but don't crash
+        import sys
+        print(f"Warning: Failed to parse DATABASE_URL: {e}", file=sys.stderr)
+        # Fallback to SQLite for development
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
 else:
     # SQLite fallback - NOT recommended for production/Vercel
     # Vercel's serverless functions have ephemeral file systems
     # Use PostgreSQL via DATABASE_URL for production
+    if IS_VERCEL:
+        import sys
+        print("WARNING: DATABASE_URL not set in Vercel environment!", file=sys.stderr)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

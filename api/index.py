@@ -14,13 +14,29 @@ sys.path.insert(0, str(BASE_DIR))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'visstesphere.settings')
 
 # Import Django WSGI application
+# Vercel Python runtime expects 'app' variable to be a WSGI application
 try:
     from django.core.wsgi import get_wsgi_application
-    # Get WSGI application - Vercel expects 'app' variable
+    
+    # Initialize Django application
+    # This is the WSGI application that Vercel will call
     app = get_wsgi_application()
+    
 except Exception as e:
-    # Log the error for debugging
+    # Log the error for debugging in Vercel logs
     import traceback
-    print(f"Error initializing Django application: {e}")
-    print(traceback.format_exc())
-    raise
+    error_msg = f"Error initializing Django application: {e}\n{traceback.format_exc()}"
+    print(error_msg, file=sys.stderr)
+    
+    # Create a simple error handler for Vercel that shows the error
+    def error_app(environ, start_response):
+        """Fallback error handler that displays the error."""
+        status = '500 Internal Server Error'
+        headers = [('Content-Type', 'text/plain; charset=utf-8')]
+        start_response(status, headers)
+        return [error_msg.encode('utf-8')]
+    
+    # Assign error handler as app so Vercel can at least show the error
+    app = error_app
+    
+    # Don't raise here - let Vercel handle the error through the error_app
