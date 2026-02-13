@@ -10,11 +10,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-# Set Django settings module
+# Set Django settings module BEFORE importing Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'visstesphere.settings')
 
 # Import Django WSGI application
-from django.core.wsgi import get_wsgi_application
-
-# Get WSGI application - Vercel expects 'app' variable
-app = get_wsgi_application()
+try:
+    from django.core.wsgi import get_wsgi_application
+    # Get WSGI application - Vercel expects 'app' variable
+    app = get_wsgi_application()
+except Exception as e:
+    # Log the error for debugging
+    import traceback
+    print(f"Error initializing Django application: {e}")
+    print(traceback.format_exc())
+    raise

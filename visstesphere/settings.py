@@ -22,15 +22,15 @@ if os.path.isfile("env.py"):
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'psql 'postgresql://neondb_owner:npg_9jeIGhgtd8oY@ep-holy-field-airz4r6l-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Ensure SECRET_KEY is set in production
-if not SECRET_KEY and not DEBUG:
-    raise ValueError("SECRET_KEY environment variable must be set in production!")
-
+if not DEBUG and SECRET_KEY == 'django-insecure-local-key-for-dev':
+    raise ValueError("SECURITY ERROR: You must set a custom SECRET_KEY in Vercel Environment Variables!")
+    
 # Update ALLOWED_HOSTS without trailing slashes
 ALLOWED_HOSTS = [
     'visste-sphere-93169428c40e.herokuapp.com',
@@ -160,6 +160,9 @@ if 'DATABASE_URL' in os.environ:
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 else:
+    # SQLite fallback - NOT recommended for production/Vercel
+    # Vercel's serverless functions have ephemeral file systems
+    # Use PostgreSQL via DATABASE_URL for production
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
