@@ -13,17 +13,30 @@ if os.path.isfile("env.py"):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# --- تصحيح الأمان هنا ---
-# جلب المفتاح من Vercel أو استخدام مفتاح افتراضي للجهاز المحلي
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-key-for-dev')
 
-# تحديد وضع المطور
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# التأكد من عدم استخدام المفتاح الافتراضي في Vercel
-if not DEBUG and SECRET_KEY == 'django-insecure-local-key-for-dev':
-    raise ValueError("SECURITY ERROR: You must set a custom SECRET_KEY in Vercel Environment Variables!")
-# ------------------------
+# Detect if we're running on Vercel (production)
+IS_VERCEL = os.environ.get('VERCEL') == '1' or bool(os.environ.get('VERCEL_URL', ''))
+
+# Ensure SECRET_KEY is set in production/Vercel (not empty and not default)
+# Only enforce in production environments (Vercel) or when DEBUG is explicitly False
+if IS_VERCEL:
+    if not SECRET_KEY or SECRET_KEY == 'django-insecure-local-key-for-dev':
+        raise ValueError(
+            "SECURITY ERROR: SECRET_KEY environment variable must be set in production! "
+            "Get a secure key from: python -c \"from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())\""
+        )
+elif not DEBUG and SECRET_KEY == 'django-insecure-local-key-for-dev':
+    # Warn but don't fail in local development if DEBUG is not explicitly set
+    import warnings
+    warnings.warn(
+        "SECURITY WARNING: Using default SECRET_KEY. Set SECRET_KEY environment variable for production!",
+        UserWarning
+    )
 
 # Update ALLOWED_HOSTS without trailing slashes
 ALLOWED_HOSTS = [
@@ -124,11 +137,15 @@ SITE_ID = 1
 WSGI_APPLICATION = 'visstesphere.wsgi.application'
 
 # Database configuration
-if 'DATABASE_URL' in os.environ:
+database_url = os.environ.get('DATABASE_URL', '').strip()
+if database_url and database_url.startswith(('postgresql://', 'postgres://', 'mysql://', 'sqlite://')):
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        "default": dj_database_url.parse(database_url)
     }
 else:
+    # SQLite fallback - NOT recommended for production/Vercel
+    # Vercel's serverless functions have ephemeral file systems
+    # Use PostgreSQL via DATABASE_URL for production
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
