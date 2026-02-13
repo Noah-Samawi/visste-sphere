@@ -2,7 +2,7 @@
 
 [(Developer: Noah Al-Samawi)](https://github.com/Noah-Samawi)
 
-[Link to deployed site](https://www.vissta-sphere.com/ or https://visste-sphere-93169428c40e.herokuapp.com/)
+[Link to deployed site](https://www.vissta-sphere.com/)
 
 <hr>
 Vissta Sphere is an online merchandise store catering specifically to software developers. It also is an edu platform where users can enroll in extra online courses and subscribe to memberships. Built using Python, Django, HTML, CSS, JavaScript, Amazon S3 and Stripe.
