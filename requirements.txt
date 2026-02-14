@@ -19,7 +19,6 @@ django-storages==1.14.2
 django-embed-video==1.4.9
 django-phonenumber-field==7.2.0
 phonenumberslite==8.13.29
-**django-storages==1.14.2**
 gunicorn==21.2.0
 idna==3.6
 jmespath==1.0.1
