@@ -1,4 +1,4 @@
-#!/Users/naa/visste-sphere/venv/bin/python3.12
+#!/Users/noahal-samawi/Desktop/visste-sphere-main/visste-sphere/venv/bin/python3.12
 
 import sys
 import json

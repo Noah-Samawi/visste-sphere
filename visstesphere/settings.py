@@ -3,260 +3,194 @@ Django settings for visstesphere project.
 """
 
 import os
-import dj_database_url
 from pathlib import Path
+import dj_database_url
 
-# Load environment variables if env.py exists
-if os.path.isfile("env.py"):
-    import env
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-key-for-dev')
+# -------------------------------------------------
+# SECURITY
+# -------------------------------------------------
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
-# Detect if we're running on Vercel (production)
-IS_VERCEL = os.environ.get('VERCEL') == '1' or bool(os.environ.get('VERCEL_URL', ''))
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-# Ensure SECRET_KEY is set in production/Vercel (not empty and not default)
-# Only enforce in production environments (Vercel) or when DEBUG is explicitly False
-if IS_VERCEL:
-    if not SECRET_KEY or SECRET_KEY == 'django-insecure-local-key-for-dev':
-        raise ValueError(
-            "SECURITY ERROR: SECRET_KEY environment variable must be set in production! "
-            "Get a secure key from: python -c \"from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())\""
-        )
-elif not DEBUG and SECRET_KEY == 'django-insecure-local-key-for-dev':
-    # Warn but don't fail in local development if DEBUG is not explicitly set
-    import warnings
-    warnings.warn(
-        "SECURITY WARNING: Using default SECRET_KEY. Set SECRET_KEY environment variable for production!",
-        UserWarning
-    )
+IS_VERCEL = bool(os.environ.get("VERCEL")) or bool(os.environ.get("VERCEL_URL"))
 
-# Update ALLOWED_HOSTS without trailing slashes
+if IS_VERCEL and SECRET_KEY == "dev-secret-key":
+    raise ValueError("SECRET_KEY must be set in production (Vercel).")
+
+# -------------------------------------------------
+# ALLOWED HOSTS
+# -------------------------------------------------
+
 ALLOWED_HOSTS = [
-    'visste-sphere-93169428c40e.herokuapp.com',
-    '8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
-    'localhost',
-    '127.0.0.1',
-    'vissta-sphere.com',
-    'www.vissta-sphere.com',
-    '.vercel.app',  # All Vercel deployment domains (Django supports leading dot)
-    '.now.sh',  # Legacy Vercel domains
-    'visste-sphere.vercel.app',  # Specific Vercel domain
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+    ".now.sh",
 ]
 
-# Get Vercel URL from environment if available
-VERCEL_URL = os.environ.get('VERCEL_URL', '')
+VERCEL_URL = os.environ.get("VERCEL_URL")
 if VERCEL_URL:
-    # Remove protocol if present
-    VERCEL_URL = VERCEL_URL.replace('https://', '').replace('http://', '').strip()
-    if VERCEL_URL and VERCEL_URL not in ALLOWED_HOSTS:
-        ALLOWED_HOSTS.append(VERCEL_URL)
+    ALLOWED_HOSTS.append(VERCEL_URL)
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-noahsamawi-visstesphere-22d076nx04t.ws-eu117.gitpod.io',
-    'https://visste-sphere-93169428c40e.herokuapp.com',
-    'https://vissta-sphere.com',
-    'https://www.vissta-sphere.com',
-    'https://visste-sphere.vercel.app',  # Specific Vercel domain
+    "https://*.vercel.app",
 ]
 
 if VERCEL_URL:
-    CSRF_TRUSTED_ORIGINS.append(f'https://{VERCEL_URL}')
-    
-# Add common Vercel patterns (will be validated by Django)
-# Note: Django doesn't support wildcards in CSRF_TRUSTED_ORIGINS, so we add specific domains
+    CSRF_TRUSTED_ORIGINS.append(f"https://{VERCEL_URL}")
 
-# Application definition
+# -------------------------------------------------
+# APPLICATIONS
+# -------------------------------------------------
+
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'crispy_forms',
-    'crispy_bootstrap4',
-    'embed_video',
-    'storages',
-    'home',
-    'products',
-    'programs',
-    'cart',
-    'checkout',
-    'profiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "embed_video",
+    "storages",
+
+    "home",
+    "products",
+    "programs",
+    "cart",
+    "checkout",
+    "profiles",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
-ROOT_URLCONF = 'visstesphere.urls'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+ROOT_URLCONF = "visstesphere.urls"
+WSGI_APPLICATION = "visstesphere.wsgi.application"
+
+SITE_ID = 1
+
+# -------------------------------------------------
+# TEMPLATES
+# -------------------------------------------------
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth'),
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'cart.contexts.cart_contents',
-            ],
-            'builtins': [
-                'crispy_forms.templatetags.crispy_forms_tags',
-                'crispy_forms.templatetags.crispy_forms_field',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "cart.contexts.cart_contents",
             ],
         },
     },
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-SITE_ID = 1
-WSGI_APPLICATION = 'visstesphere.wsgi.application'
+# -------------------------------------------------
+# DATABASE
+# -------------------------------------------------
 
-# Database configuration
-database_url = os.environ.get('DATABASE_URL', '').strip()
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-# Debug logging for Vercel (only in production)
-if IS_VERCEL:
-    import sys
-    if database_url:
-        # Log that DATABASE_URL is set (but don't log the full URL for security)
-        print(f"INFO: DATABASE_URL is set (length: {len(database_url)}, starts with: {database_url[:20]}...)", file=sys.stderr)
-    else:
-        print("ERROR: DATABASE_URL is not set in Vercel environment!", file=sys.stderr)
-
-if database_url and database_url.startswith(('postgresql://', 'postgres://', 'mysql://', 'sqlite://')):
-    try:
-        # Parse database URL - dj_database_url handles SSL options from query string
-        db_config = dj_database_url.parse(database_url)
-        
-        # Ensure SSL is properly configured for Neon/PostgreSQL
-        # If sslmode is in OPTIONS, ensure it's properly formatted for psycopg2
-        if 'OPTIONS' in db_config and 'sslmode' in db_config['OPTIONS']:
-            # psycopg2 uses 'sslmode' directly in OPTIONS
-            # The URL query parameters are already parsed into OPTIONS by dj_database_url
-            pass
-        
-        # For Neon PostgreSQL, ensure SSL is required
-        if db_config.get('ENGINE') == 'django.db.backends.postgresql':
-            if 'OPTIONS' not in db_config:
-                db_config['OPTIONS'] = {}
-            # Ensure sslmode is set if not already present
-            if 'sslmode' not in db_config['OPTIONS']:
-                db_config['OPTIONS']['sslmode'] = 'require'
-        
-        DATABASES = {
-            "default": db_config
-        }
-    except Exception as e:
-        # Log database URL parsing error but don't crash
-        import sys
-        print(f"Warning: Failed to parse DATABASE_URL: {e}", file=sys.stderr)
-        import traceback
-        print(traceback.format_exc(), file=sys.stderr)
-        # Fallback to SQLite for development
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
-else:
-    # SQLite fallback - NOT recommended for production/Vercel
-    # Vercel's serverless functions have ephemeral file systems
-    # Use PostgreSQL via DATABASE_URL for production
-    if IS_VERCEL:
-        import sys
-        print("WARNING: DATABASE_URL not set in Vercel environment!", file=sys.stderr)
+if DATABASE_URL:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
+
+
+# Example: flat delivery cost
+DELIVERY_COST = 5.00  # in your currency, e.g., USD
+# -------------------------------------------------
+# PASSWORD VALIDATORS
+# -------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# -------------------------------------------------
+# INTERNATIONALIZATION
+# -------------------------------------------------
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# -------------------------------------------------
+# STATIC & MEDIA
+# -------------------------------------------------
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-if 'USE_AWS' in os.environ:
-    AWS_S3_OBJECT_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000',
-    }
-    AWS_STORAGE_BUCKET_NAME = 'visste-sphere-store'
-    AWS_S3_REGION_NAME = 'eu-west-1'
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
+# -------------------------------------------------
+# STRIPE
+# -------------------------------------------------
 
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET", "")
 
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
-STRIPE_CURRENCY = 'usd'
-DELIVERY_COST = 5
+# -------------------------------------------------
+# EMAIL
+# -------------------------------------------------
 
-DEFAULT_FROM_EMAIL = 'visstesphere@example.com'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
