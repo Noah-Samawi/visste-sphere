@@ -17,5 +17,5 @@ phonenumberslite==8.13.29
 stripe==8.1.0
 
 boto3==1.34.36
-setuptools
+
 setuptools>=68.0.0
