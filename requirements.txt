@@ -15,9 +15,6 @@ django-phonenumber-field==7.2.0
 phonenumberslite==8.13.29
 
 stripe==8.1.0
-git add requirements.txt runtime.txt
-git commit -m "Pin setuptools and update runtime to Python 3.12.12"
-git push origin main
 boto3==1.34.36
 setuptools==68.0.0
 wheel==0.41.2
