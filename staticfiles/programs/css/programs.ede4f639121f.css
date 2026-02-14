@@ -1,0 +1,29 @@
+/* PROGRAM CARD */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.program-card:hover,
+.program-card:focus {
+  border: 1px solid #0275d8;
+}
+
+.program-card .title {
+  min-height: 3.5ch;
+}
+
+/* VIDEO  */
+
+iframe {
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container {
+  max-width: 960px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

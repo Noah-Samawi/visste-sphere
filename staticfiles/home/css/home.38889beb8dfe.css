@@ -1,0 +1,63 @@
+/* Hero Buttons */
+
+.btn.bg-orange:hover,
+.btn.bg-orange:focus {
+  background: var(--secondary-orange);
+  color: #fff;
+  outline: 1px solid white;
+}
+
+/* Feature Icons */
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5rem;
+}
+
+/* CAROUSEL */
+
+.carousel-item img {
+  width: 200px;
+  aspect-ratio: 1/ 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.carousel-indicators button {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+}
+
+.carousel-indicators .active {
+  background-color: var(--primary-orange);
+}
+
+/* MAILCHIMP */
+
+#mc_embed_signup {
+  background: transparent;
+  clear: left;
+  font: 14px Helvetica, Arial, sans-serif;
+  min-width: 300px;
+}
+
+#mc_embed_signup .helper_text {
+  background-color: transparent !important;
+}
+#mc_embed_signup div.response {
+  padding: 0 !important;
+}
+
+#mc_embed_signup .mc-field-group {
+  padding-bottom: 0 !important;
+}

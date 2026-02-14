@@ -1,0 +1,27 @@
+/* CHECKOUT FORM */
+.form-control:disabled {
+  outline: 2px solid var(--primary-green);
+}
+
+/* CHECKOUT ICONS */
+
+.activity-checkout {
+  list-style: none;
+}
+
+.activity-checkout .checkout-icon {
+  position: absolute;
+  top: -4px;
+  left: -24px;
+}
+
+.activity-checkout .checkout-item {
+  position: relative;
+  padding-bottom: 24px;
+  padding-left: 35px;
+  border-left: 2px solid #f5f6f8;
+}
+
+.activity-checkout .checkout-item {
+  border-color: var(--primary-blue);
+}
